@@ -1,10 +1,34 @@
-html.dark {
-  background-color: #0d0950;
-  color: #fff;
+:root {
+  /* dark style, dark = default */
+  color-scheme: var(--color-scheme, dark);
+  --bg: url('/img/bg.jpg');
+  --bg-color: #191724;
+  transition-duration: 200ms;
+  transition-property: background, background-color, color;
+
+  /* page preference is "light" */
+  &:has(#color-scheme option[value="light"]:checked) {
+    --color-scheme: light;
+    --bg: url('/img/bg-light.jpg');
+    --bg-color: #faf4ed;
+  }
+    
+  /* page preference is "system", and system preference is "dark" */
+  @media (prefers-color-scheme: light) {
+    &:has(#color-scheme option[value="system"]:checked) {
+      --color-scheme: light;
+    --bg: url('/img/bg-light.jpg');
+    --bg-color: #faf4ed;
+    }
+  }
+
+ @media screen and (prefers-reduced-motion: reduce), (update: slow) {
+    transition-duration: 0s;
+  }
 }
 
-.dark .nav-links a {
-  color: #fff;
+* {
+  box-sizing: border-box;
 }
 
 html {
@@ -12,66 +36,149 @@ html {
 }
 
 body {
+    background: light-dark(#f1eded, #000);
+    background: var(--bg);
+
   margin: 0 auto;
-  width: 100%;
-  max-width: 80ch;
-  padding: 1rem;
+  width: 97%;
   line-height: 1.5;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  justify-content: center;
+grid-template-areas:
+"header header header"
+"sidebar-left content sidebar-right"
+"footer footer footer";
+ @media (max-width: 799px) {
+grid-template-columns: 1fr;
+grid-template-areas:
+"header"
+"sidebar-left"
+"content" 
+"sidebar-right"
+"footer";
+ }
 }
 
-* {
-  box-sizing: border-box;
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+justify-content: start;
+margin-top:2rem;
+padding:1em;
+ @media (max-width: 799px) {
+  max-width: 100%;
+ }
 }
+
+.sidebar section {
+border: 20px solid;
+border-image: url('/img/section.png');
+border-image-slice: 20;
+border-image-repeat: repeat;
+background: var(--bg-color);
+}
+
+.sidebar h2 {
+  margin: 0;
+  padding: 0;
+background: var(--bg-color);
+font-size: 1rem;
+font-weight: normal;
+text-align: center;
+border: 20px solid;
+border-image: url('/img/header.png');
+border-image-slice: 20;
+border-image-repeat: repeat;
+}
+
+.sidebar .left {
+    grid-area: sidebar-left;
+margin-left: auto;
+  }
+
+.sidebar .right {
+    grid-area: sidebar-right;
+margin-right: auto;
+  }
+
+main {
+    grid-area: content;
+margin: 0 auto;
+max-width: 80ch;
+width: 100%;
+display: flex;
+flex-direction: column;
+background: var(--bg-color);
+  margin-top: 3rem;
+padding: 1rem;
+border: 40px solid;
+border-image: url('/img/main.png');
+ border-image-slice: 45; 
+border-image-repeat: stretch;
+border-image-outset: 20px 11px;
+  
+ @media (max-width: 799px) {
+width: 100%;
+ }
+  }
+
+  header {
+    grid-area: header;
+  margin: auto;
+  width: 100%;
+  border: 20px solid;
+  border-image: url('/img/border.png');
+  border-image-slice: 20 44;
+border-image-repeat: repeat;
+ border-image-outset: 10px;
+background: var(--bg-color);
+}
+
+header p {
+  text-align: center;
+  font-size:3rem;
+}
+
+  footer {
+    grid-area:footer;
+border: 20px solid;
+border-image: url('/img/header.png');
+border-image-slice: 20;
+border-image-repeat: repeat;
+background: var(--bg-color);
+  }
+
 
 h1 {
   margin: 1rem 0;
   font-size: 2.5rem;
-}
-
-
-
-/* nav styles */
-
-.nav-links {
-  width: 100%;
-  top: 5rem;
-  left: 48px;
-  background-color: #ff9776;
-  display: none;
-  margin: 0;
-}
-
-.nav-links a {
-  display: block;
   text-align: center;
-  padding: 10px 0;
-  text-decoration: none;
-  font-size: 1.2rem;
-  font-weight: bold;
-  text-transform: uppercase;
 }
 
-.nav-links a:hover,
-.nav-links a:focus {
-  background-color: #ff9776;
+img {
+  max-width: 100%;
+  height: auto;
 }
 
-.expanded {
-  display: unset;
+li {
+color: light-dark(#a3313a, #ebbcba);
+}
+li strong {
+font-size:large;
+color: light-dark(#a17638, #f6c177);
 }
 
-@media screen and (min-width: 636px) {
-  .nav-links {
-    margin-left: 5em;
-    display: block;
-    position: static;
-    width: auto;
-    background: none;
-  }
-
-  .nav-links a {
-    display: inline-block;
-    padding: 15px 20px;
-  }
-
+.img-center {
+  margin:auto;
+  justify-content: center;
+  display: flex;
 }
+
+textarea {
+  max-width: 40ch;
+  margin: auto;
+}
+
+ul {padding-inline-start: 20px;}

@@ -1,0 +1,71 @@
+---
+
+---
+<select id="color-scheme">
+  <option value="system" selected>System</option>
+  <option value="light">Light</option>
+  <option value="dark">Dark</option>
+</select>
+
+<script>
+const colorScheme = document.querySelector('meta[name=color-scheme]');
+const switchButtons = document.querySelectorAll('button');
+
+switchButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const currentButton = button;
+
+    switchButtons.forEach(
+      button => button.setAttribute(
+        'aria-pressed', button === currentButton
+      )
+    );
+
+    colorScheme.content = button.value;
+  });
+});
+
+/* https://www.smashingmagazine.com/2024/03/setting-persisting-color-scheme-preferences-css-javascript/
+ * If a color scheme preference was previously stored,
+ * select the corresponding option in the color scheme preference UI
+ * unless it is already selected.
+ */
+function restoreColorSchemePreference() {
+  const colorScheme = localStorage.getItem(colorSchemeStorageItemName);
+
+  if (!colorScheme) {
+    return;
+  }
+
+  const option = colorSchemeSelectorEl.querySelector(`[value=${colorScheme}]`);
+
+  if (!option) {
+    localStorage.removeItem(colorSchemeStorageItemName);
+    return;
+  }
+
+  if (option.selected) {
+    return;
+  }
+
+  option.selected = true;
+}
+
+/*
+ * Store an event target's value in localStorage under colorSchemeStorageItemName
+ */
+function storeColorSchemePreference({ target }) {
+  const colorScheme = target.querySelector(":checked").value;
+  localStorage.setItem(colorSchemeStorageItemName, colorScheme);
+}
+
+const colorSchemeStorageItemName = "preferredColorScheme";
+
+const colorSchemeSelectorEl = document.querySelector("#color-scheme");
+
+if (colorSchemeSelectorEl) {
+  restoreColorSchemePreference();
+
+  colorSchemeSelectorEl.addEventListener("input", storeColorSchemePreference);
+}
+</script>
