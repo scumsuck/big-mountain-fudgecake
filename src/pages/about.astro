@@ -1,5 +1,21 @@
 ---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
 
+const pageTitle = "About";
+
+const band = {
+  members: ["John Redcorn", "Dale Gribble", "Lucky Kleinschmidt", "Elvin Mackelston"],
+  location: "Arlen, Texas",
+  genre: "heavy metal",
+  role: ["lead vocalist, acoustic guitarist, songwriter", "manager, tambourine, merch booth babe", "lead guitar (Until Season 13)", "rhythm guitar"],
+};
+
+const songs = ["Hole in My Pocket", "I Need Money", "Gotta Get Money"];
+
+const construction = true;
+const members = 4;
 ---
 
 <html lang="en">
@@ -8,24 +24,40 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>About | Big Mountain Fudgecake</title>
+    <title>{pageTitle}</title>
 	</head>
 	<body>
 
-<a href="/">Home</a>
-<a href="/about/">About</a> 
-<a href="/news/">News</a> 
+<Header />
 
-		<h1>About Big Mountain Fudgecake</h1>
+    <h1>{pageTitle}</h1>
 
-        <p>Big Mountain Fudgecake was a legendary band in the summer of 2005.  With John Redcorn as their visionary, their songs tackled socially conscious topics like money, the lack of money, personal hygiene, and oppression from the white man.  They broke up after 2 weeks of being together, due to infighting on the musical direction of the band. 
+{construction && <p>This page is under construction.</p>}
+
+
+
+        <p>Big Mountain Fudgecake was a legendary {band.genre} band from {band.location}.  Formed in 2003, they lasted until the summer of 2005.  With John Redcorn as their visionary, their songs tackled socially conscious topics like money, the lack of money, personal hygiene, and wanting to die because the white man is oppressing all of us.  The manager Dale Gribble marketed them band as "Deep Purple meets Bachman-Turner-Overdrive meets ELO", as well as "Whitesnake meets White Lion meets Great White".  They broke up after 2 gigs, due to infighting on the musical direction of the band. 
             
-            <h2>Band Members</h2>
-            <li>John Redcorn - lead vocalist, acoustic guitarist, songwriter
-            <li>Dale Gribble - manager, tambourine, merch booth babe.
-            <li>Lucky Kleinschmidt - lead guitar (Until Season 13)</li>
-            <li>Elvin Mackelston - rhthym guitar</li>
+            <h2>Band Members:</h2>
 
-            <p>There was no bassist or drummer, though their songs have empty spaces for drum solos.
+  {band.members.length >= 2 &&
+    <ul>{members === 4 ? <p>The band had 4 members</p> : <p>The band did not have 4 members</p>}
+        <li>{band.members[0]} - {band.role[0]}</li>
+        <li>{band.members[1]} - {band.role[1]}</li>
+        <li>{band.members[2]} - {band.role[2]}</li>
+        <li>{band.members[3]} - {band.role[3]}</li>
+        
+        </ul>
+  }
+
+  <p>There was no bassist or drummer, though their songs have empty spaces for drum solos.
+
+<h2>Songs:</h2>
+
+{songs.map((song) => <li>{song}</li>)}
+
+
+<Footer />
+
 	</body>
 </html>

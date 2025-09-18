@@ -1,21 +1,11 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro'
+const allPosts = Object.values(import.meta.glob('./posts/*.md', { eager: true }));
+const pageTitle = "News";
 ---
-
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>News | Big Mountain Fudgecake</title>
-	</head>
-	<body>
-
-<a href="/">Home</a>
-<a href="/about/">About</a> 
-<a href="/news/">News</a> 
-
-		<h1>Big Mountain Fudgecake News</h1>
-	</body>
-</html>
+<BaseLayout pageTitle={pageTitle}>
+  <p>This is where I will post about my journey learning Astro.</p>
+<ul>
+      {allPosts.map((post: any) => <li><a href={post.url}>{post.frontmatter.title}</a></li>)}
+</ul>
+</BaseLayout>
