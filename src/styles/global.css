@@ -157,6 +157,15 @@ h1 {
   text-align: center;
 }
 
+a{
+  text-decoration: underline dotted;
+}
+
+a:hover {
+  opacity: 75%;
+  text-decoration: underline wavy;
+}
+
 img {
   max-width: 100%;
   height: auto;
@@ -182,3 +191,18 @@ textarea {
 }
 
 ul {padding-inline-start: 20px;}
+
+.emphasis {
+ color: #E83333; 
+ background-image: linear-gradient(180deg, #E83333 10%, #FFDA45 55%); 
+ background-clip: text; 
+ -webkit-background-clip: text; 
+ -webkit-text-fill-color: transparent; 
+ font-weight: bolder;
+font-size: 2em;
+ font-family: serif;
+}
+
+header .emphasis {
+   font-size: 5em;
+}

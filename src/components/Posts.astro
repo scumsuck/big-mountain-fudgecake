@@ -1,0 +1,14 @@
+---
+import { getCollection } from "astro:content";
+import Post from "../components/Post.astro";
+
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.publicationDate.valueOf() - a.data.publicationDate.valueOf(),
+);
+---
+
+<section>
+  <div>
+    {posts.map((post) => <Post post={post} />)}
+  </div>
+</section>
