@@ -111,8 +111,8 @@ background-color: var(--bg-color);
   margin-top: 3rem;
 border: 40px solid;
 border-image: url('/img/main.png');
- border-image-slice: 45; 
-border-image-repeat: stretch;
+ border-image-slice: 50; 
+border-image-repeat: stretch repeat;
 border-image-outset: 20px 11px;
   
  @media (max-width: 799px) {
