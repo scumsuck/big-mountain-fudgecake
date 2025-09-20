@@ -3,8 +3,6 @@
   color-scheme: var(--color-scheme, dark);
   --bg: url('/img/bg.jpg');
   --bg-color: #191724;
-  transition-duration: 200ms;
-  transition-property: background, background-color, color;
 
   /* page preference is "light" */
   &:has(#color-scheme option[value="light"]:checked) {
@@ -21,14 +19,13 @@
     --bg-color: #faf4ed;
     }
   }
-
- @media screen and (prefers-reduced-motion: reduce), (update: slow) {
-    transition-duration: 0s;
-  }
 }
 
 * {
   box-sizing: border-box;
+    transition-duration: 200ms;
+  transition-property: all;
+  transition: all 300ms;
 }
 
 html {
@@ -36,7 +33,6 @@ html {
 }
 
 body {
-    background: light-dark(#f1eded, #000);
     background: var(--bg);
 
   margin: 0 auto;
@@ -77,13 +73,13 @@ border: 20px solid;
 border-image: url('/img/section.png');
 border-image-slice: 20;
 border-image-repeat: repeat;
-background: var(--bg-color);
+background-color: var(--bg-color);
 }
 
 .sidebar h2 {
   margin: 0;
   padding: 0;
-background: var(--bg-color);
+background-color: var(--bg-color);
 font-size: 1rem;
 font-weight: normal;
 text-align: center;
@@ -110,7 +106,8 @@ max-width: 80ch;
 width: 100%;
 display: flex;
 flex-direction: column;
-background: var(--bg-color);
+background-color: light-dark(white, black);
+background-color: var(--bg-color);
   margin-top: 3rem;
 border: 40px solid;
 border-image: url('/img/main.png');
@@ -132,7 +129,7 @@ width: 100%;
   border-image-slice: 20 44;
 border-image-repeat: repeat;
  border-image-outset: 10px;
-background: var(--bg-color);
+background-color: var(--bg-color);
 }
 
 header p {
@@ -146,7 +143,7 @@ border: 20px solid;
 border-image: url('/img/header.png');
 border-image-slice: 20;
 border-image-repeat: repeat;
-background: var(--bg-color);
+background-color: var(--bg-color);
   }
 
 
