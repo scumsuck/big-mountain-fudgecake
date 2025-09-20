@@ -9,10 +9,13 @@ const allPosts = Object.values(import.meta.glob('./posts/*.md', { eager: true })
 
 <img src="/img/john-redcorn-productions-88x31.gif" alt="John Redcorn Productions gif with his hair blowing">
 Welcome to the UNOFFICIAL fansite for BIG MOUNTAIN FUDGECAKE.  We will goon about John Redcorn here with images, writing, and other forms of worship.
-<h2>Updates:</h2>
-<ol>
-      {allPosts.map((post: any) => <li><a href={post.url}>[{post.frontmatter.pubDate.toString().slice(0,10)}] - {post.frontmatter.title} </a></li>)}
-</ol>
+<h2>News & updates:</h2>
+
+<ul class="updates">
+      {allPosts.toReversed().map((post: any) => <li><a href={post.url} class="date"> {post.frontmatter.pubDate.toString().slice(0,10)}</a> 
+      <a href={post.url} class="updates-right"><div class="title">{post.frontmatter.title}</div> <div class="description">{post.frontmatter.description}</div></a> 
+      </li> )}
+</ul>
 
 
 </BaseLayout>

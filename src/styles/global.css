@@ -2,7 +2,7 @@
   /* dark style, dark = default */
   color-scheme: var(--color-scheme, dark);
   --bg: url('/img/bg.jpg');
-  --bg-color: #191724;
+  --bg-color: #121213;
 
   /* page preference is "light" */
   &:has(#color-scheme option[value="light"]:checked) {
@@ -189,6 +189,33 @@ textarea {
 
 ul {padding-inline-start: 20px;}
 
+.updates {
+max-width: 50ch;
+margin: 0 auto;
+}
+
+.updates li{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.date {
+  color: #E83333;
+  font-weight: bold;
+  text-decoration: none;
+  font-size:1.1rem;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.description {
+
+  font-style: italic;
+}
+
 .emphasis {
  color: #E83333; 
  background-image: linear-gradient(180deg, #E83333 10%, #FFDA45 55%); 
@@ -212,5 +239,18 @@ header .emphasis {
    word-break: break-word;
        filter: drop-shadow(5px 5px 5px black);
 }
+
+figure {
+  display: flex;
+  padding: 0px;
+  margin: 0px;
+  justify-content: center;
+}
+
+figcaption {
+  font-style: italic;
+  text-align: center;
+}
+
 
 

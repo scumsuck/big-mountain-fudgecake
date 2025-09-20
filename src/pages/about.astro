@@ -12,7 +12,7 @@ const band = {
 
 const songs = ["Hole in My Pocket", "I Need Money", "Gotta Get Money", "Reaper of Souls"];
 
-const construction = true;
+const construction = false;
 const members = 4;
 ---
 
@@ -20,7 +20,7 @@ const members = 4;
 
 {construction && <p>This page is under construction.</p>}
 
-
+<figure><img src="/img/about/bmf band.jpg" alt="Big Mountain Fudgecake band at the grand opening."></figure>
 
         <p>Big Mountain Fudgecake was a legendary {band.genre} band from {band.location}.  Formed in 2003, they lasted until the summer of 2005.  With John Redcorn as their visionary, their songs tackled socially conscious topics like money, the lack of money, personal hygiene, and wanting to die because the white man is oppressing all of us.  The manager Dale Gribble marketed them band as "Deep Purple meets Bachman-Turner-Overdrive meets ELO", as well as "Whitesnake meets White Lion meets Great White".  They broke up after 2 gigs, due to infighting on the musical direction of the band. 
             
@@ -42,5 +42,20 @@ const members = 4;
 
 {songs.map((song) => <li>{song}</li>)}
 
+<h2>Gigs:</h2>
+<ul>
+  <li>S7E23 - May 18, 2003 - John Redcorn's New Age Healing Center (Every Friday)</li>
+  <li>S9E11 - April 10, 2005 - Maria's Pizza and Pasta (cancelled)</li>
+  <li>S9E11 - April 10, 2005 - Speaking Wind Casino and Entertainment Center (cancelled due to government agents)</li>
+  <li>S9E11 - April 10, 2005 - Strickland Propane Family Fun Day</li>
+  <li>S13E2 - October 5, 2008 - Strickland Propan Concert For The Earth (opener)</li>
+</ul>
+
+<figure><img src="/img/about/bmf gig.jpg" alt="Big Mountain Fudgecake band at the grand opening."></figure>
+
+<h2>Nerd shit:</h2>
+<p>This site was built in a day to see if I could learn how to <a href="https://wiki.scumsuck.com/blog:2025:0917astro_attempt">use Astro to build a website</a>.  I guess I succeeded since this site is up!  Astro was mostly useful so I don't have to copy/paste the layout on each page.
+<p>The layout of this site, concept of this site, and background images and border images are inspired by the <a href="https://web.archive.org/web/20070112002150/http://www.metalsludge.tv/home/index.php">old Metal Sludge pages.</a></p>
+<p>All screenshots on this site are from the English dub of King of the Hill.</p>
 
 </BaseLayout>
