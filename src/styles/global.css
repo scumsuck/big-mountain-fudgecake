@@ -112,7 +112,6 @@ display: flex;
 flex-direction: column;
 background: var(--bg-color);
   margin-top: 3rem;
-padding: 1rem;
 border: 40px solid;
 border-image: url('/img/main.png');
  border-image-slice: 45; 
@@ -188,6 +187,7 @@ color: light-dark(#a17638, #f6c177);
 textarea {
   max-width: 40ch;
   margin: auto;
+  display: flex;
 }
 
 ul {padding-inline-start: 20px;}
@@ -205,4 +205,8 @@ font-size: 2em;
 
 header .emphasis {
    font-size: 5em;
+   word-break: break-word;
+   filter: drop-shadow(5px 5px 5px black);
 }
+
+
