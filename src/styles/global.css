@@ -198,12 +198,19 @@ ul {padding-inline-start: 20px;}
  font-weight: bolder;
 font-size: 2em;
  font-family: serif;
+    filter: drop-shadow(1px 1px 1px black);
+a {
+ background-image: linear-gradient(180deg, #E83333 20%, #FFDA45 55%); 
+  background-clip: text; 
+ -webkit-background-clip: text; 
+ -webkit-text-fill-color: transparent; 
+}
 }
 
 header .emphasis {
    font-size: 5em;
    word-break: break-word;
-   filter: drop-shadow(5px 5px 5px black);
+       filter: drop-shadow(5px 5px 5px black);
 }
 
 
