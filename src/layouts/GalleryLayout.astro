@@ -1,0 +1,71 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout pageTitle="gallery" headerName="gallery">
+
+	<style is:inline>
+		@media only screen and (max-width: 50em) { 
+			.wrapper {
+				font-size: 4vw !important;
+				min-width: 100%;
+				min-height: 100%;
+				word-wrap: break-word !important;
+			}
+
+			.wrapper img {
+				min-width: 100% !important;
+			}
+
+			.gallery-grid {
+				grid-template-columns: auto !important;
+			}
+
+			.gallery-grid-sub img {
+				max-width: 100% !important;	
+				max-height: 100% !important;
+			}
+
+			.gallery-grid-sub {
+				margin: 0 !important;
+			}
+		}
+	
+		.wrapper {
+			width: calc(80% + 2em) !important;
+			margin: auto !important;
+		}
+		
+		.image-grid {
+			text-align: center;
+		}
+		
+		.image-grid-item {
+			vertical-align: middle;
+			margin: .5em;
+		}
+		
+		.image-grid img {
+			width: 25% !important;
+			height: 25% !important;
+		}
+		
+		div#main p.text-center {
+			text-align: center;
+		}
+		
+		.gallery-grid {
+			display: grid;
+			grid-template-columns: 600px 600px;
+			grid-gap: 1em;
+			justify-content: center;
+		}
+		
+		.gallery-grid-sub {
+			vertical-align: middle;
+			margin: 1em;
+		}
+	</style>
+	
+	<slot />
+</BaseLayout>

@@ -1,0 +1,52 @@
+---
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+
+import GalleryLayout from "../../layouts/GalleryLayout.astro";
+
+import { getPhotoImages } from "../../utils/photos";
+
+export async function getStaticPaths() {
+	const photos = await getCollection("photos");
+
+	const paths = Object.values(photos).map((photo) => {
+		return {
+			params: {
+				id: photo.id,
+			},
+		props: {
+			photo,
+		},
+	};
+});
+	return paths;
+}
+
+const { photo } = Astro.props;
+const images = await getPhotoImages(photo.id);
+
+---
+
+<GalleryLayout>
+
+	<section>
+		<div class="header-wrapper">
+			<h2 id={photo.data.titleDash}>{photo.data.title}</h2>
+				<a href=`#${photo.data.titleDash}` class="header-anchor">
+					<span aria-hidden="true">#</span>
+					<span class="access-hidden">section titled {photo.data.title}</span>
+				</a>
+		</div>
+		<p>{photo.data.description}</p>
+		<p>click any image to open a gallery view (javascript only).</p>
+		<p><a href="/photos/">go back</a></p>
+	</section>
+
+	<div class="image-grid">
+		{
+			images.map((image) => (
+				<a href={image.src} data-lightbox="gallery one"><Image src={image} alt="" quality="high" class="image-grid-item" width="700" loading="lazy" /></a>
+			))
+		}
+	</div>
+</GalleryLayout>
