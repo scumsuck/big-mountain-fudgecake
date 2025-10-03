@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import "/node_modules/@fancyapps/ui/dist/fancybox/fancybox.css";
+import "../styles/fancybox.css";
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
   "../assets/fanart/*.{jpg,jpeg,png,webp}",
