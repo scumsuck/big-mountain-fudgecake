@@ -1,5 +1,5 @@
 import { defineCollection, z } from "astro:content";
-import { glob, file } from 'astro/loaders'; // Not available with legacy API
+import { glob } from "astro/loaders";
 
 const art = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/art" }),
@@ -13,6 +13,19 @@ const art = defineCollection({
   })
 });
 
-export const collections = {
-  art
-};
+const blog = defineCollection({
+    loader: glob({ pattern: '**/[^_]*.md', base: "./src/blog" }),
+    schema: z.object({
+      title: z.string(),
+      pubDate: z.date(),
+      description: z.string(),
+      author: z.string(),
+      image: z.object({
+        url: z.string(),
+        alt: z.string()
+      }),
+      tags: z.array(z.string())
+    })
+});
+
+export const collections = { art, blog };
