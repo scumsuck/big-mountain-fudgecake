@@ -1,0 +1,69 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import "@fancyapps/ui/dist/fancybox/fancybox.css";
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "../assets/fanart/*.{jpg,jpeg,png,webp}",
+);
+const pageTitle = "Fanart Gallery";
+---
+<BaseLayout pageTitle={pageTitle}>
+
+  <section class="gallery" id="photoswipe">
+    {
+      Object.entries(images).map(async ([_path, image], index) => {
+        const { default: imageData } = await image();
+        return (
+          <a
+            style={`--width: ${imageData.width}; --height: ${imageData.height};`}
+            href={imageData.src}
+            target="_blank"
+            data-fancybox="gallery"
+          >
+            <Image
+              format="webp"
+              src={imageData}
+              alt=""
+              height={400}
+              loading={index < 20 ? "eager" : "lazy"}
+            />
+          </a>
+        );
+      })
+    }
+  </section>
+</BaseLayout>
+
+<script>
+  import { Fancybox } from "@fancyapps/ui/dist/fancybox/";
+
+  Fancybox.bind("[data-fancybox]", {
+    theme: "auto",
+    mainStyle: {
+"--f-button-width": "44px",
+"--f-button-height": "44px",
+"--f-button-border-radius": "50%",
+"--f-toolbar-padding": "16px",
+"--f-thumb-width": "82px",
+"--f-thumb-height": "82px",
+"--f-thumb-opacity": "0.5",
+"--f-thumb-hover-opacity": "1",
+"--f-thumb-selected-opacity": "1",
+    },
+    Carousel: {
+    Thumbs: {
+      type: "classic",
+    },
+      Arrows: true,
+      Toolbar: {
+        display: {
+          left: ["counter"],
+          middle: [],
+          right: ["download", "thumbs", "close"],
+        },
+      },
+      transition: "slide",
+    },
+  });
+</script>

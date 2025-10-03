@@ -1,13 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 const pageTitle = "BMF UNOFFICIAL FANSITE";
-
 const allPosts = Object.values(import.meta.glob('./posts/*.md', { eager: true }));
 
 ---
 <BaseLayout pageTitle={pageTitle}>
 
-<img src="/img/john-redcorn-productions-88x31.gif" alt="John Redcorn Productions gif with his hair blowing">
+
+<img src="/src/assets/fanart/big-mountain-fudgecake-sm.png" alt="John Redcorn Productions gif with his hair blowing">
+
 Welcome to the UNOFFICIAL fansite for BIG MOUNTAIN FUDGECAKE.  We will goon about John Redcorn here with images, writing, and other forms of worship.
 <h2>News & updates:</h2>
 
@@ -17,5 +18,6 @@ Welcome to the UNOFFICIAL fansite for BIG MOUNTAIN FUDGECAKE.  We will goon abou
       </li> )}
 </ul>
 
+<img src="/img/john-redcorn-productions-88x31.gif" alt="John Redcorn Productions gif with his hair blowing">
 
 </BaseLayout>

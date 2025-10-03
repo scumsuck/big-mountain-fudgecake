@@ -1,0 +1,72 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import type { MarkdownHeading, ImageMetadata } from 'astro'
+
+type Props = CollectionEntry<'art'>['data'] & {
+	headings: MarkdownHeading[]
+	slug: string
+	remarkPluginFrontmatter: Record<string, string>
+}
+
+const {
+	title,
+	description,
+	pubDate,
+	coverImageCredit,
+	slug,
+} = Astro.props
+
+import BaseLayout from './BaseLayout.astro'
+import { Image } from 'astro:assets'
+
+const artImages = import.meta.glob<{ default: ImageMetadata }>(
+	'/src/assets/fanart/**/*.{jpeg,jpg,png,gif}'
+)
+
+const coverImagePath = `/src/assets/fanart/${slug}.jpg`
+---
+
+<BaseLayout title={title} description={description}>
+	<main>
+		<article>
+			<div>		
+				<div>
+					<div>
+						<h1>
+							{title}
+						</h1>
+						<div>
+							<!-- Publish date -->
+							<span>
+								
+								{pubDate.toString().slice(0,10)}
+							</span>
+						</div>
+
+						{
+							artImages[coverImagePath] && (
+								<>
+									<Image
+										src={artImages[coverImagePath]()}
+										alt={title}
+									/>
+									{coverImageCredit && (
+										<p>
+											Image Credit: {coverImageCredit}
+										</p>
+									)}
+								</>
+							)
+						}
+					</div>
+					<div>
+						<slot />
+					</div>
+
+
+					</div>
+				</div>
+			</div>
+		</article>
+	</main>
+</BaseLayout>
