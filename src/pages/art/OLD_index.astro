@@ -1,0 +1,16 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const pageTitle = "Art Gallery";
+import BlogPostPreview from '../../components/BlogPostPreview.astro';
+let allPosts = await Astro.glob('../../content/art/*.md');
+allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.publishDate).valueOf() - new Date(a.frontmatter.publishDate).valueOf());
+---
+<BaseLayout pageTitle={pageTitle}>				
+    
+    <section aria-label="Blog post list" class="cards">
+
+					{allPosts.toReversed().map((p) => <BlogPostPreview post={p} />)}
+				</section>
+
+</BaseLayout>

@@ -1,16 +1,74 @@
 ---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-
-const pageTitle = "Art Gallery";
-import BlogPostPreview from '../../components/BlogPostPreview.astro';
-let allPosts = await Astro.glob('../../content/art/*.md');
-allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.publishDate).valueOf() - new Date(a.frontmatter.publishDate).valueOf());
+const artPost = await getCollection("artPosts");
 ---
-<BaseLayout pageTitle={pageTitle}>				
-    
-    <section aria-label="Blog post list" class="cards">
 
-					{allPosts.toReversed().map((p) => <BlogPostPreview post={p} />)}
-				</section>
+<BaseLayout>
 
+
+		<section class="art-gallery">
+		{
+			artPost.map((post) => (
+				<figure>
+					<a href={post.data.img.src} title="">
+						<Image src={post.data.img} alt={post.data.imgAlt} data-is-nsfw={post.data.nsfw} quality="max" width="500" format="png">
+					</a>
+					<a href={`/art/${post.id}`}><h2>{post.data.title}</h2></a>
+					
+					<p>{post.data.pubDate.toString().slice(0,10)}</p>
+					<p class="description">{post.data.description}</p>
+				</figure>
+			))
+		}
+		</section>
 </BaseLayout>
+
+<style>
+
+.art-gallery {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(auto, 300px));
+	gap:1em;
+  img {
+    object-fit: cover;
+	aspect-ratio: 1/1;
+  }
+  p {
+	margin: 0;
+  }
+}
+
+figure {
+	display:flex;
+	flex-direction: column;
+}
+
+h2 {
+text-overflow: ellipsis;
+white-space: nowrap;
+overflow: hidden;
+margin: 0;
+}
+.description {
+text-overflow: ellipsis;
+white-space: nowrap;
+overflow: hidden;
+font-size: 10px;
+}
+
+.blur-nsfw {
+        filter: blur(5px);
+    }
+
+
+
+</style>
+
+<script>
+    const nsfwAll = document.querySelectorAll("[data-is-nsfw=true]");
+    nsfwAll.forEach((nsfwImg) => {
+            nsfwImg.classList.add("blur-nsfw");
+    });
+</script>

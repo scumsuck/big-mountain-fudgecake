@@ -6,8 +6,7 @@ const allPosts = Object.values(import.meta.glob('./posts/*.md', { eager: true })
 ---
 <BaseLayout pageTitle={pageTitle}>
 
-
-<img src="/src/assets/fanart/big-mountain-fudgecake-sm.png" alt="John Redcorn Productions gif with his hair blowing">
+      <img src="/img/john-redcorn-productions-88x31.gif" alt="John Redcorn Productions gif with his hair blowing majestically">
 
 Welcome to the UNOFFICIAL fansite for BIG MOUNTAIN FUDGECAKE.  We will goon about John Redcorn here with images, writing, and other forms of worship.
 <h2>News & updates:</h2>
@@ -17,7 +16,5 @@ Welcome to the UNOFFICIAL fansite for BIG MOUNTAIN FUDGECAKE.  We will goon abou
       <a href={post.url} class="updates-right"><div class="title">{post.frontmatter.title}</div> <div class="description">{post.frontmatter.description}</div></a> 
       </li> )}
 </ul>
-
-<img src="/img/john-redcorn-productions-88x31.gif" alt="John Redcorn Productions gif with his hair blowing">
 
 </BaseLayout>
