@@ -3,21 +3,23 @@ import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 const artPost = await getCollection("artPosts");
+const pageTitle = "Art Gallery";
 ---
 
-<BaseLayout>
+<BaseLayout pageTitle={pageTitle}>
 
-
+<p>Here's art I've drawn.  Each art post will have some yapping about my thought process in the individual page.</p>
 		<section class="art-gallery">
 		{
-			artPost.map((post) => (
+			artPost.toReversed().map((post) => (
 				<figure>
-					<a href={post.data.img.src} title="">
+					<a href={`/art/${post.id}`} title="">
 						<Image src={post.data.img} alt={post.data.imgAlt} data-is-nsfw={post.data.nsfw} quality="max" width="500" format="png">
 					</a>
 					<a href={`/art/${post.id}`}><h2>{post.data.title}</h2></a>
 					
-					<p>{post.data.pubDate.toString().slice(0,10)}</p>
+					<p>{post.data.pubDate.toLocaleDateString()}</p>
+
 					<p class="description">{post.data.description}</p>
 				</figure>
 			))
@@ -29,7 +31,7 @@ const artPost = await getCollection("artPosts");
 
 .art-gallery {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(auto, 300px));
+grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
 	gap:1em;
   img {
     object-fit: cover;
