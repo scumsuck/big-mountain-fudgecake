@@ -36,7 +36,7 @@ jobs:
         with:
           SSH_PRIVATE_KEY: ${{ secrets.KATATHENA_GHDEPLOY }}
           ARGS: "-rlgoDzvc -i --delete"
-          SOURCE: "public/"
+          SOURCE: "dist/"
           REMOTE_HOST: "athena"
           REMOTE_USER: "kat"
           TARGET: "/var/www/scumsuck/johnredcorn/"
