@@ -21,15 +21,15 @@ jobs:
       - name: checkout repo
         uses: actions/checkout@v4
 
-        - name: use nodejs
-          uses: actions/setup-node@v3
-          with:
-            node-version: lts/*
+      - name: use nodejs
+        uses: actions/setup-node@v3
+        with:
+          node-version: lts/*
 
-        - name: build site
-          run: |
-            npm i
-            npm run build
+      - name: build site
+        run: |
+          npm i
+          npm run build
 
       - name: deploy to kat@athena
         uses: easingthemes/ssh-deploy@main
@@ -39,4 +39,4 @@ jobs:
           SOURCE: "public/"
           REMOTE_HOST: "athena"
           REMOTE_USER: "kat"
-          TARGET: "/var/www/scumsuck/fujofans/"
+          TARGET: "/var/www/scumsuck/johnredcorn/"
